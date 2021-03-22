@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=NemoMobile
+Exec=nemomobile-session
+TryExec=nemomobile-session
+Type=Application
+X-LightDM-Session-Type=wayland
+X-LightDM-DesktopName=NemoMobile
+

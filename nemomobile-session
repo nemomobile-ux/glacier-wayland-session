@@ -1,0 +1,11 @@
+#!/bin/sh
+
+systemctl --user import-environment
+
+dbus-update-activation-environment --systemd XDG_SESSION_DESKTOP="nemomobile"
+dbus-update-activation-environment --systemd MIR_SERVER_WAYLAND_HOST=/tmp/wayland-root
+
+/usr/share/nemomobile-session/run-systemd-session lipstick.service
+
+exit 0
+
