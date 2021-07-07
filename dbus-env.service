@@ -1,0 +1,11 @@
+[Unit]
+Description=Environment Imported Target
+After=dbus.socket
+
+[Install]
+WantedBy=graphical-session.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=dbus-update-activation-environment --systemd --all

@@ -5,7 +5,7 @@
 # Maintainer: James Kittsmiller (AJSlye) <james@nulogicsystems.com>
 
 pkgname=glacier-wayland-session
-pkgver=0.2
+pkgver=0.3
 pkgrel=1
 pkgdesc="Glacier Wayland session"
 arch=('x86_64' 'aarch64')
@@ -14,17 +14,20 @@ license=('GPL-3.0-or-later')
 depends=('lipstick-glacier-home-git' 'lightdm')
 makedepends=()
 optdepends=()
-source=("nemomobile.desktop" "nemomobile-session" "run-systemd-session")
+source=("nemomobile.desktop" "nemomobile-session" "run-systemd-session" "dbus-env.service")
 sha512sums=('SKIP' 'SKIP' 'SKIP')
 
 prepare(){
     mkdir -p "${pkgdir}/usr/bin"
     mkdir -p "${pkgdir}/usr/share/nemomobile-session"
     mkdir -p "${pkgdir}/usr/share/lightdm/sessions"
+    mkdir -p "${pkgdir}/usr/lib/systemd/user/graphical-session.target.wants"
 }
 
 package() {
     install -Dm755 "${srcdir}/run-systemd-session" -t "${pkgdir}/usr/share/nemomobile-session/"
     install -Dm755 "${srcdir}/nemomobile-session" -t "${pkgdir}/usr/bin"
     install -Dm644 "${srcdir}/nemomobile.desktop" -t "${pkgdir}/usr/share/lightdm/sessions/"
+    install -Dm644 "${srcdir}/dbus-env.service" -t "${pkgdir}/usr/lib/systemd/user/"
+    ln -s ../dbus-env.service "${pkgdir}/usr/lib/systemd/user/graphical-session.target.wants/"
 }
