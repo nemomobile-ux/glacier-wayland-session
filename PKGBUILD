@@ -29,5 +29,6 @@ package() {
     install -Dm755 "${srcdir}/nemomobile-session" -t "${pkgdir}/usr/bin"
     install -Dm644 "${srcdir}/nemomobile.desktop" -t "${pkgdir}/usr/share/lightdm/sessions/"
     install -Dm644 "${srcdir}/dbus-env.service" -t "${pkgdir}/usr/lib/systemd/user/"
+    mkdir -p "${pkgdir}/usr/lib/systemd/user/graphical-session.target.wants/"
     ln -s ../dbus-env.service "${pkgdir}/usr/lib/systemd/user/graphical-session.target.wants/"
 }
