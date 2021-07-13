@@ -15,7 +15,7 @@ depends=('lipstick-glacier-home-git' 'lightdm')
 makedepends=()
 optdepends=()
 source=("nemomobile.desktop" "nemomobile-session" "run-systemd-session" "dbus-env.service")
-sha512sums=('SKIP' 'SKIP' 'SKIP')
+sha512sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 prepare(){
     mkdir -p "${pkgdir}/usr/bin"
