@@ -14,7 +14,7 @@ systemctl --user stop graphical-session.target graphical-session-pre.target
 
 # robustness: if the previous graphical session left some failed units,
 # reset them so that they don't break this startup
-for unit in $(systemctl --user --no-legend --state=failed list-units | cut -f1 -d' '); do
+for unit in $(systemctl --user --no-legend --plain --state=failed list-units | cut -f1 -d' '); do
     if [ "$(systemctl --user show -p PartOf --value $unit)" = "graphical-session.target" ]; then
         systemctl --user reset-failed $unit
     fi
@@ -24,7 +24,7 @@ done
 # can be done declaratively (https://github.com/systemd/systemd/issues/3750)
 # This could be a generator, but we don't want to penalize non-graphical logins
 # with this.
-systemctl --user list-unit-files --no-legend | while read unit status _; do
+systemctl --user list-unit-files --no-legend --plain | while read unit status _; do
     [ "${unit%.service}" != "$unit" ] || continue
     [ "$status" != "$disabled" ] || continue
     if [ "$(systemctl --user show -p PartOf --value $unit)" = "graphical-session.target" ]; then
