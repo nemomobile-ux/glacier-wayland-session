@@ -10,12 +10,12 @@ Description=Default User Session
 After=systemd-user-sessions.service
 
 [Service]
-User=nemo
+User=manjaro
 PAMName=login
 Type=simple
 TimeoutStartSec=0
 TimeoutStopSec=2
-Environment=RESTART_FILE=/home/nemo/.restart-user
+Environment=RESTART_FILE=/home/manjaro/.restart-user
 ExecStart=/usr/lib/startup/start-user-session
 Restart=always
 RestartSec=1
